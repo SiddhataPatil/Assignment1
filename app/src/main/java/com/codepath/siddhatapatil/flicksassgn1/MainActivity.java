@@ -2,7 +2,9 @@ package com.codepath.siddhatapatil.flicksassgn1;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ListView;
 
+import com.codepath.siddhatapatil.flicksassgn1.Adapters.MovieArrayAdapter;
 import com.codepath.siddhatapatil.flicksassgn1.models.Movie;
 import com.loopj.android.http.*;
 
@@ -18,10 +20,19 @@ import cz.msebera.android.httpclient.Header;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<Movie> movies;
+    MovieArrayAdapter movieAdapter;
+    ListView lvitems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        lvitems= (ListView) findViewById(R.id.lvMovies);
+        movies = new ArrayList<>();
+        movieAdapter = new MovieArrayAdapter(this, movies);
+        lvitems.setAdapter(movieAdapter);
+
         String url = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(url, new JsonHttpResponseHandler() {
@@ -31,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray moviejasonResults = null;
                 try {
                     moviejasonResults = response.getJSONArray("results");
-                    movies = Movie.fromJSONArray(moviejasonResults);
+                    movies.addAll(Movie.fromJSONArray(moviejasonResults));
+                    movieAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
