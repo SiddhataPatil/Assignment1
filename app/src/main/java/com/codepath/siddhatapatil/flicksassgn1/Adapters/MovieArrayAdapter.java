@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.codepath.siddhatapatil.flicksassgn1.R;
 import com.codepath.siddhatapatil.flicksassgn1.models.Movie;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -43,6 +44,10 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
 
         tvTitle.setText(movie.getOriginalTitle());
         tvOverview.setText(movie.getOverview());
+
+        //Populate Images
+
+        Picasso.with(getContext()).load(movie.getPosterPath()).into(ivImage);
 
         return convertView;
     }
