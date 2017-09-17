@@ -76,13 +76,22 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
         {
                 ImageView ivImage = (ImageView)convertView.findViewById(R.id.movieImage);
                 ivImage.setImageResource(0);
-                Picasso.with(getContext()).load(movie.getPosterPath()).into(ivImage);
+                //Picasso.with(getContext()).load(movie.getPosterPath()).into(ivImage);
+                Picasso.with(getContext()).load(movie.getPosterPath())
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.placeholder_error)
+                    .into(ivImage);
+
         }
         else if (orientation == Configuration.ORIENTATION_LANDSCAPE) //2
         {
                 ImageView ivImage_landscape = (ImageView)convertView.findViewById(R.id.movieImage1);
                 ivImage_landscape.setImageResource(0);
-                Picasso.with(getContext()).load(movie.getBackdropPath()).into(ivImage_landscape);
+                //Picasso.with(getContext()).load(movie.getBackdropPath()).into(ivImage_landscape);
+                Picasso.with(getContext()).load(movie.getBackdropPath())
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.placeholder_error)
+                    .into(ivImage_landscape);
         }
 
       return convertView;
