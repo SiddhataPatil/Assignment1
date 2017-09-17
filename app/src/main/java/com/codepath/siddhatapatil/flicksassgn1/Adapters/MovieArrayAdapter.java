@@ -15,7 +15,10 @@ import com.codepath.siddhatapatil.flicksassgn1.R;
 import com.codepath.siddhatapatil.flicksassgn1.models.Movie;
 import com.squareup.picasso.Picasso;
 
+import android.content.res.Configuration;
+
 import org.w3c.dom.Text;
+
 
 /**
  * Created by siddhatapatil on 9/16/17.
@@ -54,9 +57,11 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
         }
         viewHolder.title.setText(movie.getOriginalTitle());
         viewHolder.overview.setText(movie.getOverview());
+/*
         ImageView ivImage = (ImageView)convertView.findViewById(R.id.movieImage);
         ivImage.setImageResource(0);
-
+        Picasso.with(getContext()).load(movie.getPosterPath()).into(ivImage);
+*/
         //TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
         //TextView tvOverview = (TextView) convertView.findViewById(R.id.tvOverview);
 
@@ -65,8 +70,21 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
 
         //Populate Images
 
-        Picasso.with(getContext()).load(movie.getPosterPath()).into(ivImage);
+        int orientation = getContext().getResources().getConfiguration().orientation;
 
-        return convertView;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) //1
+        {
+                ImageView ivImage = (ImageView)convertView.findViewById(R.id.movieImage);
+                ivImage.setImageResource(0);
+                Picasso.with(getContext()).load(movie.getPosterPath()).into(ivImage);
+        }
+        else if (orientation == Configuration.ORIENTATION_LANDSCAPE) //2
+        {
+                ImageView ivImage_landscape = (ImageView)convertView.findViewById(R.id.movieImage1);
+                ivImage_landscape.setImageResource(0);
+                Picasso.with(getContext()).load(movie.getBackdropPath()).into(ivImage_landscape);
+        }
+
+      return convertView;
     }
 }
