@@ -55,8 +55,8 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
         {
             viewHolder = (ViewHolder)convertView.getTag();
         }
-        viewHolder.title.setText(movie.getOriginalTitle());
-        viewHolder.overview.setText(movie.getOverview());
+       // viewHolder.title.setText(movie.getOriginalTitle());
+       // viewHolder.overview.setText(movie.getOverview());
 /*
         ImageView ivImage = (ImageView)convertView.findViewById(R.id.movieImage);
         ivImage.setImageResource(0);
@@ -71,27 +71,51 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
         //Populate Images
 
         int orientation = getContext().getResources().getConfiguration().orientation;
+        float Vote = movie.getVotes();
 
         if (orientation == Configuration.ORIENTATION_PORTRAIT) //1
         {
-                ImageView ivImage = (ImageView)convertView.findViewById(R.id.movieImage);
-                ivImage.setImageResource(0);
-                //Picasso.with(getContext()).load(movie.getPosterPath()).into(ivImage);
-                Picasso.with(getContext()).load(movie.getPosterPath())
-                    .placeholder(R.drawable.placeholder)
-                    .error(R.drawable.placeholder_error)
-                    .into(ivImage);
+            ImageView ivImage = (ImageView) convertView.findViewById(R.id.movieImage);
+            ivImage.setImageResource(0);
+            //Picasso.with(getContext()).load(movie.getPosterPath()).into(ivImage);
+            if (Vote > 5.0)
+            {
+                Picasso.with(getContext()).load(movie.getBackdropPath())
+                        .placeholder(R.drawable.placeholder)
+                        .error(R.drawable.placeholder_error)
+                        .into(ivImage);
+            }
+            else {
+                    Picasso.with(getContext()).load(movie.getPosterPath())
+                        .placeholder(R.drawable.placeholder)
+                        .error(R.drawable.placeholder_error)
+                        .into(ivImage);
+                viewHolder.title.setText(movie.getOriginalTitle());
+                viewHolder.overview.setText(movie.getOverview());
+                }
 
         }
         else if (orientation == Configuration.ORIENTATION_LANDSCAPE) //2
         {
-                ImageView ivImage_landscape = (ImageView)convertView.findViewById(R.id.movieImage1);
-                ivImage_landscape.setImageResource(0);
-                //Picasso.with(getContext()).load(movie.getBackdropPath()).into(ivImage_landscape);
-                Picasso.with(getContext()).load(movie.getBackdropPath())
-                    .placeholder(R.drawable.placeholder)
-                    .error(R.drawable.placeholder_error)
-                    .into(ivImage_landscape);
+            ImageView ivImage_landscape = (ImageView) convertView.findViewById(R.id.movieImage1);
+            ivImage_landscape.setImageResource(0);
+            //Picasso.with(getContext()).load(movie.getBackdropPath()).into(ivImage_landscape);
+            if (Vote > 5.0)
+            {
+                Picasso.with(getContext()).load(movie.getBackdropPath1())
+                        .placeholder(R.drawable.placeholder)
+                        .error(R.drawable.placeholder_error)
+                        .into(ivImage_landscape);
+            }
+
+            else {
+                    Picasso.with(getContext()).load(movie.getBackdropPath())
+                        .placeholder(R.drawable.placeholder)
+                        .error(R.drawable.placeholder_error)
+                        .into(ivImage_landscape);
+                viewHolder.title.setText(movie.getOriginalTitle());
+                viewHolder.overview.setText(movie.getOverview());
+            }
         }
 
       return convertView;
