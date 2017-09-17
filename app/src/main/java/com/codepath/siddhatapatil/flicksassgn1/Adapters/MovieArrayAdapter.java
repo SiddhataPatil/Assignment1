@@ -42,11 +42,20 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
     {
         Movie movie = getItem(position);
         ViewHolder viewHolder;
+        float Vote = movie.getVotes();
         if (convertView == null)
         {
             viewHolder = new ViewHolder();
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView=inflater.inflate(R.layout.item_movie,parent, false);
+            if (Vote > 5.0)
+            {
+                LayoutInflater inflater = LayoutInflater.from(getContext());
+                convertView=inflater.inflate(R.layout.item_movie,parent, false);
+            }
+            else
+            {
+                LayoutInflater inflater = LayoutInflater.from(getContext());
+                convertView=inflater.inflate(R.layout.unpopular_movie,parent, false);
+            }
             viewHolder.title=(TextView)convertView.findViewById(R.id.tvTitle);
             viewHolder.overview=(TextView)convertView.findViewById(R.id.tvOverview);
             convertView.setTag(viewHolder);
@@ -71,8 +80,6 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
         //Populate Images
 
         int orientation = getContext().getResources().getConfiguration().orientation;
-        float Vote = movie.getVotes();
-
         if (orientation == Configuration.ORIENTATION_PORTRAIT) //1
         {
             ImageView ivImage = (ImageView) convertView.findViewById(R.id.movieImage);
