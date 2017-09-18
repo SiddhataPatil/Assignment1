@@ -20,6 +20,8 @@ import android.content.res.Configuration;
 
 import org.w3c.dom.Text;
 
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+
 
 /**
  * Created by siddhatapatil on 9/16/17.
@@ -93,6 +95,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
                 Picasso.with(getContext()).load(movie.getBackdropPath())
                         .placeholder(R.drawable.placeholder)
                         .error(R.drawable.placeholder_error)
+                        .transform(new RoundedCornersTransformation(12, 12))
                         .into(ivImage);
                 //ma.launchComposeView();
             }
@@ -100,6 +103,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
                     Picasso.with(getContext()).load(movie.getPosterPath())
                         .placeholder(R.drawable.placeholder)
                         .error(R.drawable.placeholder_error)
+                            .transform(new RoundedCornersTransformation(12, 12))
                         .into(ivImage);
                 viewHolder.title.setText(movie.getOriginalTitle());
                 viewHolder.overview.setText(movie.getOverview());
@@ -116,14 +120,16 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
                 Picasso.with(getContext()).load(movie.getBackdropPath1())
                         .placeholder(R.drawable.placeholder)
                         .error(R.drawable.placeholder_error)
+                        .transform(new RoundedCornersTransformation(12, 12))
                         .into(ivImage_landscape);
                // ma.launchComposeView();
             }
 
             else {
-                    Picasso.with(getContext()).load(movie.getBackdropPath())
+                Picasso.with(getContext()).load(movie.getBackdropPath())
                         .placeholder(R.drawable.placeholder)
                         .error(R.drawable.placeholder_error)
+                        .transform(new RoundedCornersTransformation(12, 12))
                         .into(ivImage_landscape);
                 viewHolder.title.setText(movie.getOriginalTitle());
                 viewHolder.overview.setText(movie.getOverview());
