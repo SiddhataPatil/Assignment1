@@ -19,6 +19,9 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
+import butterknife.BindView;
+
 import cz.msebera.android.httpclient.Header;
 
 import android.content.Intent;
@@ -40,12 +43,11 @@ public class MainActivity extends AppCompatActivity  {
     ArrayList<Movie> movies;
     MovieArrayAdapter movieAdapter;
     ListView lvitems;
-
+    @BindView(R.id.ibplay) ImageButton button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         lvitems= (ListView) findViewById(R.id.lvMovies);
         movies = new ArrayList<>();
         movieAdapter = new MovieArrayAdapter(this, movies);
@@ -82,8 +84,8 @@ public class MainActivity extends AppCompatActivity  {
     }
     public void launchComposeView() {
         // first parameter is the context, second is the class of the activity to launch
-        ImageButton button;
-        button = (ImageButton) findViewById(R.id.ibplay) ;
+        ButterKnife.bind(this);
+        //button = (ImageButton) findViewById(R.id.ibplay) ;
         button.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
                 Intent i = new Intent(MainActivity.this, MovieDetailAdapter.class);
