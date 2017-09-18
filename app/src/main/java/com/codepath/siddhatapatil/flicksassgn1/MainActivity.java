@@ -2,9 +2,12 @@ package com.codepath.siddhatapatil.flicksassgn1;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.codepath.siddhatapatil.flicksassgn1.Adapters.MovieArrayAdapter;
+import com.codepath.siddhatapatil.flicksassgn1.Adapters.MovieDetailAdapter;
 import com.codepath.siddhatapatil.flicksassgn1.models.Movie;
 import com.loopj.android.http.*;
 
@@ -16,6 +19,10 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
+
+import android.content.Intent;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,7 +60,23 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
             }
-        });
 
+        });
+/*
+        Intent i = new Intent(MainActivity.this,
+                MovieDetailActivity.class);
+        startActivity(i);
+        */
+    }
+    public void launchComposeView() {
+        // first parameter is the context, second is the class of the activity to launch
+        ImageButton button;
+        button = (ImageButton) findViewById(R.id.ibplay) ;
+        button.setOnClickListener(new OnClickListener() {
+            public void onClick(View arg0) {
+                Intent i = new Intent(MainActivity.this, MovieDetailAdapter.class);
+                startActivity(i); // brings up the second activity
+            }
+    });
     }
 }

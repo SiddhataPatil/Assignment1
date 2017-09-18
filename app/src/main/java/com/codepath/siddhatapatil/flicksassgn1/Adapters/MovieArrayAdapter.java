@@ -11,6 +11,7 @@ import java.util.List;
 import android.view.View;
 import android.widget.TextView;
 
+import com.codepath.siddhatapatil.flicksassgn1.MainActivity;
 import com.codepath.siddhatapatil.flicksassgn1.R;
 import com.codepath.siddhatapatil.flicksassgn1.models.Movie;
 import com.squareup.picasso.Picasso;
@@ -25,6 +26,8 @@ import org.w3c.dom.Text;
  */
 
 public class MovieArrayAdapter extends ArrayAdapter<Movie>{
+
+    MainActivity ma;
 
     private static class ViewHolder
     {
@@ -42,7 +45,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
     {
         Movie movie = getItem(position);
         ViewHolder viewHolder;
-        float Vote = movie.getVotes();
+        Double Vote = movie.getVotes();
         if (convertView == null)
         {
             viewHolder = new ViewHolder();
@@ -91,6 +94,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
                         .placeholder(R.drawable.placeholder)
                         .error(R.drawable.placeholder_error)
                         .into(ivImage);
+                //ma.launchComposeView();
             }
             else {
                     Picasso.with(getContext()).load(movie.getPosterPath())
@@ -113,6 +117,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
                         .placeholder(R.drawable.placeholder)
                         .error(R.drawable.placeholder_error)
                         .into(ivImage_landscape);
+               // ma.launchComposeView();
             }
 
             else {
@@ -127,4 +132,5 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
 
       return convertView;
     }
+
 }
