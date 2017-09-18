@@ -25,6 +25,8 @@ import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import okhttp3.OkHttpClient;
+
 /*
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity  {
         movies = new ArrayList<>();
         movieAdapter = new MovieArrayAdapter(this, movies);
         lvitems.setAdapter(movieAdapter);
+        //OkHttpClient client = new OkHttpClient();
 
         String url = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
         AsyncHttpClient client = new AsyncHttpClient();
