@@ -29,5 +29,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile files('YouTubeAndroidPlayerApi.jar')
+
     testCompile 'junit:junit:4.12'
+    compile 'com.google.android.gms:play-services-ads:10.0.1'
+
 }

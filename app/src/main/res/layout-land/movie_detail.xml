@@ -4,8 +4,8 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="350dp"
-        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:background="@drawable/rating_bar"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -26,9 +26,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorAccent"
+        android:id="@+id/syn"
+        android:layout_toRightOf="@+id/ivRating"
+        android:layout_toEndOf="@+id/ivRating" />
+
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/youtube_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/pop"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="53dp"
-        android:id="@+id/syn" />
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
 

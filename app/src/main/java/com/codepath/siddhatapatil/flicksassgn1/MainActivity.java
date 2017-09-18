@@ -2,6 +2,7 @@ package com.codepath.siddhatapatil.flicksassgn1;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -24,7 +25,15 @@ import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-public class MainActivity extends AppCompatActivity {
+/*
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayer.Provider;
+import com.google.android.youtube.player.YouTubePlayerView;
+*/
+
+public class MainActivity extends AppCompatActivity  {
 
     ArrayList<Movie> movies;
     MovieArrayAdapter movieAdapter;
@@ -79,4 +88,7 @@ public class MainActivity extends AppCompatActivity {
             }
     });
     }
+
+    Button button1;
+
 }
